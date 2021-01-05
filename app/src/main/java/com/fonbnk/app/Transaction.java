@@ -86,4 +86,18 @@ public class Transaction {
     public void setDateReceived(String dateReceived) {
         this.dateReceived = dateReceived;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "amount='" + amount + '\'' +
+                ", id='" + id + '\'' +
+                ", dateInitiated='" + dateInitiated + '\'' +
+                ", senderNumber='" + senderNumber + '\'' +
+                ", recipientNumber='" + recipientNumber + '\'' +
+                ", transactionType='" + transactionType + '\'' +
+                ", status='" + status + '\'' +
+                ", dateReceived='" + dateReceived + '\'' +
+                '}';
+    }
 }
