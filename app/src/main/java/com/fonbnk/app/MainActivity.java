@@ -171,13 +171,28 @@ public class MainActivity extends AppCompatActivity {
         //check the requestCode
         switch (requestCode){
 
-            case PERMISSION_REQUEST_TO_RECEIVE_SMS:
+            case PERMISSION_REQUESTS_CODE:
             {
                 //check if the length of the grantResults is greater than 0 and equal to PERMISSION_GRANTED
                 if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
+                    if (ActivityCompat.checkSelfPermission(this, READ_SMS) == PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(this, READ_PHONE_NUMBERS) == PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(this, READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(this, RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(this, CALL_PHONE) == PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(this, INTERNET) == PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                        TelephonyManager telephonyManager = (TelephonyManager)   this.getSystemService(Context.TELEPHONY_SERVICE);
+                        sendNumber = telephonyManager.getLine1Number();
+
+
+                    }
+
                     //Now broadcastreceiver works in the background
-                    Toast.makeText(this, "Thank you for permitting !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Thank you for permitting !"
+                            +"Sender Number: "+sendNumber, Toast.LENGTH_LONG).show();
                 }
                 else {
 
